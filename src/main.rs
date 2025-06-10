@@ -1,4 +1,5 @@
 mod random_enviroment;
+mod engine;
 
 fn main() {
     let rand_env = random_enviroment::create_primitive_enviroment(1, 100, 10, 50, 20);
@@ -18,7 +19,7 @@ fn main() {
 
     //Debug print for trucks
     for truck in rand_env.trucks{
-        print!("Truck with ID: {} from: {}, to: {:?}, capacity: {}, stationary: {} \n", truck.id, truck.origin.id, truck.destination, truck.capacity, truck.stationary)
+        print!("Truck with ID: {} from: {}, to: {:?}, capacity: {}, stationary: {} \n", truck.id, truck.current_location.id, truck.destination, truck.capacity, truck.stationary)
     }
 
     //Debug print for cargo

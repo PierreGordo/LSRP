@@ -9,7 +9,7 @@ pub struct Truck{
     //Adding ID so I can tell them apart
     pub id: u32,
     //Not the original origin, but the latest stop
-    pub origin: Point,
+    pub current_location: Point,
     pub destination: Option<Point>,
     //Not sure about the units yet, just a work in progress
     pub capacity: u32,
@@ -61,8 +61,8 @@ pub struct Enviroment{
 
 //Implementing Truck functions
 impl Truck{
-    fn new(id: u32, origin: Point, destination: Option<Point>, capacity: u32, stationary: bool, load: Vec<Cargo>) -> Truck{
-        Truck { id: id, origin: origin, destination: destination, capacity: capacity, stationary: stationary , load: load}
+    fn new(id: u32, current_location: Point, destination: Option<Point>, capacity: u32, stationary: bool, load: Vec<Cargo>) -> Truck{
+        Truck { id: id, current_location: current_location, destination: destination, capacity: capacity, stationary: stationary , load: load}
     }
 }
 
