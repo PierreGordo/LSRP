@@ -1,4 +1,3 @@
-use std::fmt::{write, Display};
 //Using for random enviroment creation
 use rand::prelude::*;
 
@@ -39,7 +38,7 @@ pub struct Cargo{
     //Adding ID so I can tell them apart
     pub id: u32,
     //Not the original origin, but the latest stop
-    pub origin: Point,
+    pub current_location: Point,
     pub destination: Point,
     //How much of the trucks capacity does it use?
     pub capacity_usage: u32,
@@ -82,8 +81,8 @@ impl Road{
 
 //Implementing Cargo functions
 impl Cargo{
-    fn new(id: u32, origin: Point, destination: Point, capacity_usage: u32, stationary: bool, is_loaded: bool) -> Cargo{
-        Cargo {id: id, origin: origin, destination: destination, capacity_usage: capacity_usage, stationary: stationary, is_loaded: is_loaded}
+    fn new(id: u32, current_location: Point, destination: Point, capacity_usage: u32, stationary: bool, is_loaded: bool) -> Cargo{
+        Cargo {id: id, current_location: current_location, destination: destination, capacity_usage: capacity_usage, stationary: stationary, is_loaded: is_loaded}
     }
 }
 
