@@ -1,10 +1,8 @@
-use std::collections::HashMap;
-
 mod random_enviroment;
 mod engine;
 
 fn main() {
-    let rand_env = random_enviroment::create_primitive_enviroment(1, 20, 10, 50, 20);
+    let mut rand_env = random_enviroment::create_primitive_enviroment(2, 3, 10, 50, 5);
 
 
     //Debug print for points
@@ -29,10 +27,8 @@ fn main() {
         //print!("Cargo with ID: {}, from: {}, to: {}, with capacity usage: {}, is_loaded?: {}, is_stationary?: {} \n", cargo.id, cargo.origin.id, cargo.destination.id, cargo.capacity_usage, cargo.is_loaded, cargo.stationary);
     }
 
-    //The u32 is the id of either the point or the cargo depending on the TruckAction
-    let mut move_order: HashMap<random_enviroment::Truck, (engine::TruckActions, u32)> = HashMap::new();
 
-    engine::query_legal_moves(&rand_env, &move_order);
+    engine::min_max(&mut rand_env, 2);
 
 
 }

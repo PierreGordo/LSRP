@@ -4,6 +4,7 @@ use rand::prelude::*;
 
 
 //Truck struct
+#[derive(Clone)]
 pub struct Truck{
     //Adding ID so I can tell them apart
     pub id: u32,
@@ -25,6 +26,7 @@ pub struct Point{
 }
 
 //Road struct
+#[derive(Clone)]
 pub struct Road{
     //Adding ID so I can tell them apart
     pub id: u32,
@@ -34,6 +36,7 @@ pub struct Road{
 }
 
 //Cargo struct?
+#[derive(Clone)]
 pub struct Cargo{
     //Adding ID so I can tell them apart
     pub id: u32,
@@ -49,6 +52,7 @@ pub struct Cargo{
 
 
 //Enviroment structure -> it will store the enviroment (all of the vectors of the different stuff...)
+#[derive(Clone)]
 pub struct Enviroment{
     pub trucks: Vec<Truck>,
     pub points: Vec<Point>,
@@ -90,6 +94,14 @@ impl Cargo{
 impl Enviroment{
     fn new(trucks: Vec<Truck>, points: Vec<Point>, roads: Vec<Road>, cargoes: Vec<Cargo>) -> Enviroment{
         Enviroment { trucks: trucks, points: points, roads: roads, cargoes: cargoes }
+    }
+    //Function to find a truck by id
+    pub fn find_truck_by_id(&self, id: u32) -> Option<Truck>{
+        self.trucks.iter().find(|truck| truck.id == id).cloned()
+    }
+    //Function to find cargo by id
+    pub fn find_cargo_by_id(&self, id: u32) -> Option<Cargo>{
+        self.cargoes.iter().find(|cargo| cargo.id == id).cloned()
     }
 }
 
