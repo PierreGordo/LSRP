@@ -72,9 +72,12 @@ pub fn min_max(enviroment: &mut Enviroment, depth: u32){
             if action.1 == TruckActions::Move{
                 //First find the truck in the Vec trucks by id, then modify its variable
                 if let Some(mut truck_with_id) = new_env.find_truck_by_id(action.0){
-                    println!("Algorithm wants to move truck with ID {}", action.0);
+                    //Check how the enviroment is looking
+                    println!("{}", new_env);
                     //"play" the chosen move in the enviroment
                     truck_with_id.current_location.id = action.2;
+                    //Check how the enviroment is looking
+                    println!("{}", new_env);
                     //Finally perform the recursion
                     min_max(&mut new_env, depth-1);
                 }

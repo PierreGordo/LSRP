@@ -1,5 +1,11 @@
+//Display
+use std::fmt::{write, Display};
 //Using for random enviroment creation
 use rand::prelude::*;
+//Used to differentiate between text when debugging
+use ansi_term::Style;
+use ansi_term::Colour::Red;
+
 
 
 
@@ -102,6 +108,45 @@ impl Enviroment{
     //Function to find cargo by id
     pub fn find_cargo_by_id(&self, id: u32) -> Option<Cargo>{
         self.cargoes.iter().find(|cargo| cargo.id == id).cloned()
+    }
+}
+
+//Implementing Display for Enviroment because I need it for the debugging
+impl Display for Enviroment{
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        //Bold start of debug
+        writeln!(f, "{}", Red.bold().paint("ENVIROMENT DEBUG PRINT"));
+        //Write out all the points in the enviroment
+        writeln!(f, "{}", Style::new().bold().paint("Points in enviroment:"));
+
+        for point in self.points.iter(){
+            writeln!(f, "Point with ID: {}", point.id);
+        }
+
+        //Write out all the roads in the enviroment
+        writeln!(f, "{}", Style::new().bold().paint("Roads in enviroment:"));
+
+        for road in self.roads.iter(){
+            writeln!(f, "Road with ID: {}, from: {}, to: {}, with lenght: {}", road.id, road.from.id, road.to.id, road.lenght);
+        }
+
+        //Write out all the trucks in the enviroment
+        writeln!(f, "{}", Style::new().bold().paint("Trucks in enviroment:"));
+
+        for truck in self.trucks.iter(){
+            //There are more values to debug with truck but this will do for now
+            writeln!(f, "Truck with ID: {}, current location: {}, ", truck.id, truck.current_location.id);
+        }
+        
+        //Write out all the cargo in the enviroment
+        writeln!(f, "{}", Style::new().bold().paint("Cargo in enviroment:"));
+
+        for cargo in self.cargoes.iter(){
+            //Again more values in cargo, but this should suffice for now
+            writeln!(f, "Cargo with ID: {}, with destination: {}, current location: {}, loaded: {}", cargo.id, cargo.destination.id, cargo.current_location.id, cargo.is_loaded);
+        }
+
+        Ok(())
     }
 }
 
